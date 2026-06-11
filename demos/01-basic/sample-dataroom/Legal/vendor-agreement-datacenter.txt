@@ -1,0 +1,9 @@
+VENDOR AGREEMENT — DATACENTER COLOCATION
+
+Between Acme Cloud, Inc. and NorthRack Colo LLC.
+
+This vendor agreement covers rack space and bandwidth. The agreement term
+expires on 2024-12-31 and was not renewed in the records provided.
+
+Either party may terminate this Agreement for convenience upon ninety (90)
+days written notice.

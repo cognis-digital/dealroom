@@ -1,0 +1,18 @@
+MASTER SERVICES AGREEMENT
+
+This Master Services Agreement ("Agreement") is between Acme Cloud, Inc.
+("Provider") and BigCo Industries ("Customer").
+
+1. TERM. The initial term is twelve (12) months. Thereafter, this Agreement
+   shall automatically renew for successive one-year periods unless either
+   party provides written notice of non-renewal at least sixty (60) days prior
+   to the end of the then-current term.
+
+2. ASSIGNMENT / CHANGE OF CONTROL. Provider may not assign this Agreement
+   without the prior written consent of Customer. A change of control of
+   Provider shall be deemed an assignment requiring such consent.
+
+3. LIABILITY. Notwithstanding anything to the contrary, Provider's liability
+   for breach of its data-protection obligations shall be unlimited.
+
+4. EXPIRATION. The current order form is valid through 2026-07-15.

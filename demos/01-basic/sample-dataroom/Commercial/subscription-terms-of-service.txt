@@ -1,0 +1,14 @@
+SUBSCRIPTION TERMS OF SERVICE (ToS) — ACME CLOUD
+
+These subscription terms govern customer use of the Acme Cloud SaaS platform.
+
+1. SUBSCRIPTION. Plans are billed annually in advance.
+
+2. RENEWAL. Subscriptions renew automatically for additional one-year terms.
+
+3. EXCLUSIVITY. For enterprise plans, Customer agrees Acme Cloud will be the
+   exclusive provider of cloud workflow software during the term.
+
+NOTE: The following sample value is an OBVIOUS placeholder for testing only
+(it is NOT a real credential):
+   api_key = EXAMPLE_NOT_A_REAL_KEY_0000

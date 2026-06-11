@@ -1,0 +1,14 @@
+ACME CLOUD, INC. — FINANCIAL STATEMENTS (FY2025, UNAUDITED)
+
+Income Statement (P&L), USD thousands:
+  Revenue ............ 12,400
+  Cost of revenue .... (2,900)
+  Gross profit ....... 9,500
+  Operating expenses . (8,100)
+  Operating income ... 1,400
+
+Balance Sheet (summary):
+  Cash ............... 5,200
+  Total assets ....... 9,800
+  Total liabilities .. 3,100
+  Stockholders equity. 6,700
