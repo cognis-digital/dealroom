@@ -12,6 +12,43 @@
 
 *Business & Operations — practical tooling for deals, diligence, and decisions.*
 
+## Usage — step by step
+
+`dealroom` is an M&A / VC due-diligence assistant: it scaffolds a dataroom checklist and scans a real dataroom directory for gaps, scoring readiness by deal type.
+
+1. **Install:**
+
+   ```bash
+   pip install cognis-dealroom      # or: pip install -e .
+   dealroom --version
+   ```
+
+2. **Initialize a checklist** for your deal type (`saas` is the default; `--format` is `table` or `json`):
+
+   ```bash
+   dealroom init --deal-type saas --format table
+   ```
+
+3. **Scan a dataroom directory** for missing/weak documents (formats: `table`, `json`, `html`):
+
+   ```bash
+   dealroom scan ./dataroom --deal-type saas --format json --out dd-findings.json
+   ```
+
+4. **Read the result / generate a report** — produce a shareable HTML diligence report:
+
+   ```bash
+   dealroom report ./dataroom --deal-type saas --format html --out dd-report.html
+   jq '.findings[] | {id, severity, message}' dd-findings.json
+   ```
+
+5. **Gate it in CI** — fail when material gaps remain, and/or expose it to an agent over MCP (stdio JSON-RPC):
+
+   ```bash
+   dealroom scan ./dataroom --fail-on high          # non-zero exit blocks the merge
+   dealroom mcp                                      # run as an MCP server
+   ```
+
 ## Why
 
 M&A and VC diligence starts the same way every time: a structured request list,
