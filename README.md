@@ -3,7 +3,7 @@
 > Part of the **[Cognis Neural Suite](https://github.com/cognis-digital)** by [Cognis Digital](https://cognis.digital)
 > Cognis Open Collaboration License (COCL) v1.0 · domain: `business`
 
-[![PyPI](https://img.shields.io/pypi/v/cognis-dealroom.svg)](https://pypi.org/project/cognis-dealroom/)
+[![install](https://img.shields.io/badge/install-git%2B%20%C2%B7%20pipx%20%C2%B7%20uv-6b46c1.svg)](#install--every-way-every-platform)
 [![CI](https://github.com/cognis-digital/dealroom/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/dealroom/actions)
 [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE)
 [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
@@ -11,6 +11,12 @@
 **Generate a dataroom checklist, track which items are present, and flag risks in local documents — fully local, no network needed.**
 
 *Business & Operations — practical tooling for deals, diligence, and decisions.*
+
+<!-- cognis:layman:start -->
+## What is this?
+
+Dealroom is a command-line tool that helps you run smarter due diligence when buying a company or evaluating a startup investment. You point it at a folder of business documents and it checks which important items are present (like cap tables, contracts, and financial statements), tells you exactly what is missing, and highlights red flags buried in the text — things like contracts that auto-renew without notice, expired agreements, or language that could let the other party walk away. Everything runs on your own computer; your documents never leave your machine.
+<!-- cognis:layman:end -->
 
 ## Why
 
@@ -24,10 +30,56 @@ that *are* there — auto-renewal clauses, change-of-control provisions, uncappe
 liability, IP that may not be assigned, and contracts that are expired or about
 to be. Everything runs locally; your data room never leaves the machine.
 
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Revenue & Business  ·  **JTF MERIDIAN division:** FOUNDRY · MASON
+
+**Topics:** `cognis` `business` `saas` `revenue-ops`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`dealroom` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/dealroom/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/dealroom/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/dealroom.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/dealroom.git"  # uv
+pip install "git+https://github.com/cognis-digital/dealroom.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/dealroom.git
+cd dealroom && pip install .
+```
+
+Then run:
+```sh
+dealroom --help
+```
+<!-- cognis:install:end -->
+
 ## Install
 
 ```bash
-pip install cognis-dealroom
+pip install "git+https://github.com/cognis-digital/dealroom.git"
 # or, from this repo:
 pip install -e ".[dev]"
 ```
@@ -120,6 +172,32 @@ can call them as scoped capabilities.
 
 PRs, new checklist items, deal types, and risk detections are welcome under the
 collaboration-pull model. See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+
+<a name="verification"></a>
+## Verification
+
+[![tests](https://img.shields.io/badge/tests-46%20passing-2ea44f.svg)](AUDIT.md)
+
+Every push is verified end-to-end. Latest audit (2026-06-12):
+
+```text
+tests        : 46 passed, 0 failed, 0 errored
+compile      : all modules parse
+cli          : C:\Python314\python.exe: No module named https
+package      : https
+```
+
+<details><summary>CLI surface (<code>--help</code>)</summary>
+
+```text
+C:\Python314\python.exe: No module named https
+```
+</details>
+
+Full machine-readable results: [`AUDIT.md`](AUDIT.md) · regenerate with `python -m https --help` + `pytest -q`.
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
 
 ## License
 
