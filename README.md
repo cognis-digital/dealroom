@@ -30,6 +30,16 @@ that *are* there — auto-renewal clauses, change-of-control provisions, uncappe
 liability, IP that may not be assigned, and contracts that are expired or about
 to be. Everything runs locally; your data room never leaves the machine.
 
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Revenue & Business  ·  **JTF MERIDIAN division:** FOUNDRY · MASON
+
+**Topics:** `cognis` `business` `saas` `revenue-ops`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
 <!-- cognis:install:start -->
 ## Install
 
