@@ -137,8 +137,11 @@ def _render_report_table(result: ScanResult) -> str:
 
 def _emit(text: str, out: Optional[str]) -> None:
     if out:
-        with open(out, "w", encoding="utf-8") as fh:
-            fh.write(text if text.endswith("\n") else text + "\n")
+        try:
+            with open(out, "w", encoding="utf-8") as fh:
+                fh.write(text if text.endswith("\n") else text + "\n")
+        except OSError as exc:
+            raise DataroomError(f"cannot write output file {out!r}: {exc}") from exc
         print(f"wrote {out}", file=sys.stderr)
     else:
         print(text)
@@ -213,10 +216,10 @@ def _run_init(args: argparse.Namespace) -> int:
             text = json.dumps(checklist_to_dict(args.deal_type), indent=2)
         else:
             text = _render_checklist_table(args.deal_type)
+        _emit(text, args.out)
     except DataroomError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
-    _emit(text, args.out)
     return 0
 
 
@@ -227,15 +230,19 @@ def _run_scan(args: argparse.Namespace, condensed: bool) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
-    fmt = args.format
-    if fmt == "json":
-        _emit(json.dumps(result.to_dict(), indent=2), args.out)
-    elif fmt == "html":
-        _emit(to_html(result), args.out)
-    elif condensed:
-        _emit(_render_report_table(result), args.out)
-    else:
-        _emit(_render_scan_table(result), args.out)
+    try:
+        fmt = args.format
+        if fmt == "json":
+            _emit(json.dumps(result.to_dict(), indent=2), args.out)
+        elif fmt == "html":
+            _emit(to_html(result), args.out)
+        elif condensed:
+            _emit(_render_report_table(result), args.out)
+        else:
+            _emit(_render_scan_table(result), args.out)
+    except DataroomError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
 
     return 1 if _gate(result, args.fail_on) else 0
 
@@ -243,16 +250,23 @@ def _run_scan(args: argparse.Namespace, condensed: bool) -> int:
 def main(argv: Optional[List[str]] = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
-    if args.command == "init":
-        return _run_init(args)
-    if args.command == "scan":
-        return _run_scan(args, condensed=False)
-    if args.command == "report":
-        return _run_scan(args, condensed=True)
-    if args.command == "mcp":
-        from .mcp_server import run_mcp_server
-        run_mcp_server()
-        return 0
+    try:
+        if args.command == "init":
+            return _run_init(args)
+        if args.command == "scan":
+            return _run_scan(args, condensed=False)
+        if args.command == "report":
+            return _run_scan(args, condensed=True)
+        if args.command == "mcp":
+            from .mcp_server import run_mcp_server
+            run_mcp_server()
+            return 0
+    except KeyboardInterrupt:
+        print("\ninterrupted", file=sys.stderr)
+        return 130
+    except Exception as exc:  # pragma: no cover - defensive last resort
+        print(f"unexpected error: {exc}", file=sys.stderr)
+        return 2
     parser.print_help(sys.stderr)
     return 2
 

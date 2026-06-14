@@ -108,8 +108,10 @@ def _call_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def handle_request(req: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def handle_request(req: Any) -> Optional[Dict[str, Any]]:
     """Dispatch a single JSON-RPC request. Returns None for notifications."""
+    if not isinstance(req, dict):
+        return _error(None, -32600, "invalid request: expected a JSON object")
     method = req.get("method")
     req_id = req.get("id")
     params = req.get("params") or {}
@@ -163,8 +165,11 @@ def run_mcp_server(stdin=None, stdout=None) -> None:
             continue
         response = handle_request(req)
         if response is not None:
-            stdout.write(json.dumps(response) + "\n")
-            stdout.flush()
+            try:
+                stdout.write(json.dumps(response) + "\n")
+                stdout.flush()
+            except OSError:
+                break
 
 
 if __name__ == "__main__":

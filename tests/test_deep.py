@@ -213,7 +213,7 @@ class TestMcpServer(unittest.TestCase):
         stdin = io.StringIO("\n".join(json.dumps(r) for r in requests) + "\n")
         stdout = io.StringIO()
         mcp_server.run_mcp_server(stdin=stdin, stdout=stdout)
-        return [json.loads(l) for l in stdout.getvalue().splitlines() if l.strip()]
+        return [json.loads(line) for line in stdout.getvalue().splitlines() if line.strip()]
 
     def test_initialize_and_list(self):
         out = self._roundtrip([

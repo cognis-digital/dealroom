@@ -26,11 +26,10 @@ from __future__ import annotations
 
 import datetime as _dt
 import html as _html
-import json
 import os
 import re
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Sequence, Tuple
 
 TOOL_NAME = "dealroom"
 TOOL_VERSION = "0.1.0"
@@ -177,7 +176,8 @@ def build_checklist(deal_type: str) -> List[ChecklistItem]:
         raise DataroomError(
             f"unknown deal type {deal_type!r}; choose one of {', '.join(DEAL_TYPES)}")
     rows = list(_COMMON_ITEMS) + list(_DEAL_ITEMS[dt])
-    return [ChecklistItem(i, c, l, r, h) for (i, c, l, r, h) in rows]
+    return [ChecklistItem(item_id, cat, label, req, hints)
+            for (item_id, cat, label, req, hints) in rows]
 
 
 def checklist_to_dict(deal_type: str) -> Dict[str, object]:
@@ -454,6 +454,8 @@ class ScanResult:
 
 def scan_dataroom(directory: str, deal_type: str) -> ScanResult:
     """Inventory ``directory``, map files to the checklist, flag risks."""
+    if not directory or not directory.strip():
+        raise DataroomError("directory path must not be empty")
     if not os.path.isdir(directory):
         raise DataroomError(f"not a directory: {directory}")
     items = build_checklist(deal_type)
