@@ -12,6 +12,41 @@
 
 *Business & Operations — practical tooling for deals, diligence, and decisions.*
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ dealroom-emit --version
+dealroom 0.1.0
+```
+
+```console
+$ dealroom-emit --help
+usage: dealroom [-h] [--version] {init,scan,report,mcp} ...
+
+M&A / VC due-diligence assistant — generate a dataroom checklist, track items,
+and flag risks in local documents.
+
+positional arguments:
+  {init,scan,report,mcp}
+    init                Scaffold a structured diligence checklist by deal
+                        type.
+    scan                Scan a local dataroom folder; map files + flag risks.
+    report              Scan then print a condensed status + risk summary.
+    mcp                 Run as an MCP server (stdio JSON-RPC).
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+> Blocks above are real `dealroom` output — reproduce them from a clone.
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `dealroom` is an M&A / VC due-diligence assistant: it scaffolds a dataroom checklist and scans a real dataroom directory for gaps, scoring readiness by deal type.

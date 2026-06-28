@@ -1,0 +1,3 @@
+$ dealroom-emit --version
+
+dealroom 0.1.0
